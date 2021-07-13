@@ -1,4 +1,5 @@
 from . import ellipse_model
+from . import ring_model
 from . import direction
 from . import discrete_kernel
 from . import config
@@ -40,7 +41,7 @@ def estimate_main_axis_to_core(
     # make ring to find main-axis
     # ---------------------------
 
-    azimuth_ring = pl.fuzzy.direction.project_image_onto_ring(
+    azimuth_ring = ring_model.project_image_onto_ring(
         image=fuzzy_image_smooth,
         image_binning=image_binning,
         ring_cx=median_cx,
@@ -48,7 +49,7 @@ def estimate_main_axis_to_core(
         ring_radius=ring_binning["radius"],
         ring_binning=ring_binning,
     )
-    azimuth_ring_smooth = pl.fuzzy.direction.circular_convolve1d(
+    azimuth_ring_smooth = ring_model.circular_convolve1d(
         in1=azimuth_ring, in2=ring_smoothing_kernel
     )
     azimuth_ring_smooth /= np.max(azimuth_ring_smooth)
