@@ -1,5 +1,4 @@
 import numpy as np
-import airshower_template_generator as atg
 from ... import utils
 from . import ShowerModel
 
