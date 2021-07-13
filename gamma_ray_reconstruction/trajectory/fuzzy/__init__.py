@@ -3,7 +3,6 @@ from . import ring_model
 from . import fuzzy_image
 from . import discrete_kernel
 from . import config
-from .SplitLightField import SplitLightField
 
 
 def estimate_main_axis_to_core(
