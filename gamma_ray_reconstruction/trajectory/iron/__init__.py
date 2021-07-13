@@ -2,7 +2,6 @@ from . import config
 from .. import fuzzy
 
 
-from . import fuzzy_method
 from . import model_fit
 
 import numpy as np
