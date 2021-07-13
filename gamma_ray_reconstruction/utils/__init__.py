@@ -29,3 +29,7 @@ def bin_centers(bin_edges, weight_lower_edge=0.5):
     return (
         weight_lower_edge * bin_edges[:-1] + weight_upper_edge * bin_edges[1:]
     )
+
+
+def argmax2d(a):
+    return np.unravel_index(np.argmax(a), a.shape)

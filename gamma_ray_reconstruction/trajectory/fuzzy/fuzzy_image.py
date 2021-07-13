@@ -1,5 +1,6 @@
 import numpy as np
 import skimage.draw
+from ... import utils
 
 
 def _draw_line(r0, c0, r1, c1, image_shape):
@@ -59,12 +60,8 @@ analyse fuzzy image
 -------------------
 """
 
-def argmax2d(a):
-    return np.unravel_index(np.argmax(a), a.shape)
-
-
 def argmax_image_cx_cy(image, image_binning):
-    _resp = argmax2d(image)
+    _resp = utils.argmax2d(image)
     reco_cx = image_binning["c_bin_centers"][_resp[1]]
     reco_cy = image_binning["c_bin_centers"][_resp[0]]
     return reco_cx, reco_cy

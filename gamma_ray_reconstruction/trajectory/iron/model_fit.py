@@ -1,6 +1,6 @@
 import numpy as np
 import airshower_template_generator as atg
-import plenopy as pl
+from ... import utils
 
 
 class CoreRadiusFinder:
@@ -192,7 +192,7 @@ def estimate_core_radius_using_shower_model(
 
     # find highest response in c_para r_para
     # --------------------------------------
-    argmax_c_para, argmax_r_para = pl.fuzzy.direction.argmax2d(
+    argmax_c_para, argmax_r_para = utils.argmax2d(
         c_para_r_para_response
     )
     max_c_para = config["c_para"]["supports"][argmax_c_para]
