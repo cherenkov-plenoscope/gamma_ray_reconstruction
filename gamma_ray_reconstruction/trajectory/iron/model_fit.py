@@ -3,35 +3,6 @@ import airshower_template_generator as atg
 import plenopy as pl
 
 
-def compile_user_config(user_config):
-    uc = user_config
-    cfg = {}
-    cfg["c_para"] = {}
-    cfg["c_para"]["start"] = np.deg2rad(uc["c_para"]["start_deg"])
-    cfg["c_para"]["stop"] = np.deg2rad(uc["c_para"]["stop_deg"])
-    cfg["c_para"]["num_supports"] = uc["c_para"]["num_supports"]
-    cfg["c_para"]["supports"] = utils.squarespace(
-        start=cfg["c_para"]["start"],
-        stop=cfg["c_para"]["stop"],
-        num=cfg["c_para"]["num_supports"],
-    )
-    cfg["r_para"] = {}
-    cfg["r_para"]["start"] = uc["r_para"]["start_m"]
-    cfg["r_para"]["stop"] = uc["r_para"]["stop_m"]
-    cfg["r_para"]["num_supports"] = uc["r_para"]["num_supports"]
-    cfg["r_para"]["supports"] = utils.squarespace(
-        start=cfg["r_para"]["start"],
-        stop=cfg["r_para"]["stop"],
-        num=cfg["r_para"]["num_supports"],
-    )
-    cfg["scan"] = dict(uc["scan"])
-    cfg["shower_model"] = {}
-    cfg["shower_model"]["c_perp_width"] = np.deg2rad(
-        uc["shower_model"]["c_perp_width_deg"]
-    )
-    return cfg
-
-
 class CoreRadiusFinder:
     def __init__(
         self,
