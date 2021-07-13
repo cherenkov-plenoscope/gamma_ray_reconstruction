@@ -1,8 +1,7 @@
+from . import config
 from . import ellipse_model
 from . import ring_model
 from . import fuzzy_image
-from . import discrete_kernel
-from . import config
 
 
 def estimate_main_axis_to_core(
