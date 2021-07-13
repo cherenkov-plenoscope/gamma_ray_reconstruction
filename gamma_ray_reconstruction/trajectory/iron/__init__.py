@@ -1,5 +1,6 @@
 from . import config
 from . import shower_model
+from . import core_radius_search
 from . import model_fit
 from .. import fuzzy
 
