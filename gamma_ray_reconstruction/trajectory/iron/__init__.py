@@ -1,5 +1,5 @@
 from . import config
-from .CoreRadiusFinder import CoreRadiusFinder
+from .ShowerModel import ShowerModel
 from .. import fuzzy
 
 
@@ -111,7 +111,7 @@ def model_response_for_true_trajectory(
     )
 
     lixel_ids = loph_record["photons"]["channels"]
-    truth_core_radius_finder = CoreRadiusFinder(
+    truth_core_radius_finder = ShowerModel(
         main_axis_azimuth=true_main_axis_azimuth,
         main_axis_support_cx=split_light_field.median_cx,
         main_axis_support_cy=split_light_field.median_cy,

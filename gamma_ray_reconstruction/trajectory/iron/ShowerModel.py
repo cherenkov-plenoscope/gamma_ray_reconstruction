@@ -2,7 +2,7 @@ import numpy as np
 import airshower_template_generator as atg
 
 
-class CoreRadiusFinder:
+class ShowerModel:
     def __init__(
         self,
         main_axis_azimuth,

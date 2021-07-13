@@ -1,6 +1,7 @@
 import numpy as np
 import airshower_template_generator as atg
 from ... import utils
+from . import ShowerModel
 
 
 def matching_core_radius(c_para, epsilon, m):
@@ -28,7 +29,7 @@ def estimate_core_radius_using_shower_model(
     shower_maximum_object_distance,
     config,
 ):
-    core_radius_finder = CoreRadiusFinder(
+    shower_model = ShowerModel(
         main_axis_azimuth=main_axis_azimuth,
         main_axis_support_cx=main_axis_support_cx,
         main_axis_support_cy=main_axis_support_cy,
@@ -110,7 +111,7 @@ def estimate_core_radius_using_shower_model(
             if c_para_r_para_mask[cbin, rbin]:
                 c_para_r_para_response[
                     cbin, rbin
-                ] = core_radius_finder.response(
+                ] = shower_model.response(
                     c_para=c_para,
                     r_para=r_para,
                     cer_perp_distance_threshold=config["shower_model"][
