@@ -2,7 +2,7 @@ import numpy as np
 from . import core_radius_search
 
 
-class MainAxisToCoreFinder:
+class ShowerModelFit:
     def __init__(
         self,
         light_field_cx,
