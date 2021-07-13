@@ -1,5 +1,6 @@
 from . import config
-from .ShowerModel import ShowerModel
+from . import shower_model
+from . import model_fit
 from .. import fuzzy
 
 
@@ -121,7 +122,14 @@ def model_response_for_true_trajectory(
         light_field_y=lfg.y_mean[lixel_ids],
     )
 
-    true_response = truth_core_radius_finder.response(
+    true_response = shower_model.response(
+        main_axis_azimuth=true_main_axis_azimuth,
+        main_axis_support_cx=split_light_field.median_cx,
+        main_axis_support_cy=split_light_field.median_cy,
+        light_field_cx=lfg.cx_mean[lixel_ids],
+        light_field_cy=lfg.cy_mean[lixel_ids],
+        light_field_x=lfg.x_mean[lixel_ids],
+        light_field_y=lfg.y_mean[lixel_ids],
         c_para=true_c_para,
         r_para=true_r_para,
         cer_perp_distance_threshold=model_fit_config["shower_model"][

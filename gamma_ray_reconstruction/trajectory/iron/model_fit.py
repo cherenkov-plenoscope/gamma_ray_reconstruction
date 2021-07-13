@@ -1,6 +1,6 @@
 import numpy as np
 from ... import utils
-from . import ShowerModel
+from . import shower_model
 
 
 def matching_core_radius(c_para, epsilon, m):
@@ -28,16 +28,6 @@ def estimate_core_radius_using_shower_model(
     shower_maximum_object_distance,
     config,
 ):
-    shower_model = ShowerModel(
-        main_axis_azimuth=main_axis_azimuth,
-        main_axis_support_cx=main_axis_support_cx,
-        main_axis_support_cy=main_axis_support_cy,
-        light_field_cx=light_field_cx,
-        light_field_cy=light_field_cy,
-        light_field_x=light_field_x,
-        light_field_y=light_field_y,
-    )
-
     # mask c_para r_para
     # ------------------
 
@@ -111,6 +101,13 @@ def estimate_core_radius_using_shower_model(
                 c_para_r_para_response[
                     cbin, rbin
                 ] = shower_model.response(
+                    main_axis_azimuth=main_axis_azimuth,
+                    main_axis_support_cx=main_axis_support_cx,
+                    main_axis_support_cy=main_axis_support_cy,
+                    light_field_cx=light_field_cx,
+                    light_field_cy=light_field_cy,
+                    light_field_x=light_field_x,
+                    light_field_y=light_field_y,
                     c_para=c_para,
                     r_para=r_para,
                     cer_perp_distance_threshold=config["shower_model"][
