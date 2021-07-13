@@ -1,7 +1,7 @@
 import numpy as np
 import plenoirf
 from . import ellipse_model
-from . import discrete_kernel
+from ... import utils
 
 
 __fov_radius_deg__ = 3.25
@@ -17,7 +17,7 @@ EXAMPLE = {
         "radius_deg": 1.0,
         "smoothing_kernel_width_deg": 41.0,
     },
-    "ellipse_model": ellipse_model.EXAMPLE_CONFIG
+    "ellipse_model": ellipse_model.EXAMPLE_CONFIG,
 }
 
 
@@ -38,7 +38,7 @@ def compile_user_config(user_config):
     img["smoothing_kernel_width"] = np.deg2rad(
         uimg["smoothing_kernel_width_deg"]
     )
-    img["smoothing_kernel"] = discrete_kernel.gauss2d(
+    img["smoothing_kernel"] = utils.discrete_kernel.gauss2d(
         num_steps=int(
             np.round(img["smoothing_kernel_width"] * _image_bins_per_rad)
         )
@@ -56,7 +56,7 @@ def compile_user_config(user_config):
     azr["smoothing_kernel_width"] = np.deg2rad(
         uazr["smoothing_kernel_width_deg"]
     )
-    azr["smoothing_kernel"] = discrete_kernel.gauss1d(
+    azr["smoothing_kernel"] = utils.discrete_kernel.gauss1d(
         num_steps=int(
             np.round(_ring_bins_per_rad * azr["smoothing_kernel_width"])
         )

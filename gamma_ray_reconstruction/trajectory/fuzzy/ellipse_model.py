@@ -1,6 +1,6 @@
 import numpy as np
 
-EXAMPLE_CONFIG = {"min_num_photons": 3,},
+EXAMPLE_CONFIG = {"min_num_photons": 3,}
 
 
 def project_onto_main_axis_of_model(cx, cy, ellipse_model):
