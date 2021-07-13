@@ -3,18 +3,6 @@ import airshower_template_generator as atg
 import plenopy as pl
 
 
-def squarespace(start, stop, num):
-    sqrt_space = np.linspace(
-        np.sign(start) * np.sqrt(np.abs(start)),
-        np.sign(stop) * np.sqrt(np.abs(stop)),
-        num,
-    )
-    signs = np.sign(sqrt_space)
-    square_space = sqrt_space ** 2
-    square_space *= signs
-    return square_space
-
-
 def compile_user_config(user_config):
     uc = user_config
     cfg = {}
@@ -22,7 +10,7 @@ def compile_user_config(user_config):
     cfg["c_para"]["start"] = np.deg2rad(uc["c_para"]["start_deg"])
     cfg["c_para"]["stop"] = np.deg2rad(uc["c_para"]["stop_deg"])
     cfg["c_para"]["num_supports"] = uc["c_para"]["num_supports"]
-    cfg["c_para"]["supports"] = squarespace(
+    cfg["c_para"]["supports"] = utils.squarespace(
         start=cfg["c_para"]["start"],
         stop=cfg["c_para"]["stop"],
         num=cfg["c_para"]["num_supports"],
@@ -31,7 +19,7 @@ def compile_user_config(user_config):
     cfg["r_para"]["start"] = uc["r_para"]["start_m"]
     cfg["r_para"]["stop"] = uc["r_para"]["stop_m"]
     cfg["r_para"]["num_supports"] = uc["r_para"]["num_supports"]
-    cfg["r_para"]["supports"] = squarespace(
+    cfg["r_para"]["supports"] = utils.squarespace(
         start=cfg["r_para"]["start"],
         stop=cfg["r_para"]["stop"],
         num=cfg["r_para"]["num_supports"],
@@ -116,15 +104,6 @@ class CoreRadiusFinder:
         return perp_weight
 
 
-def angle_between(v1, v2):
-    def unit_vector(vector):
-        return vector / np.linalg.norm(vector)
-
-    v1_u = unit_vector(v1)
-    v2_u = unit_vector(v2)
-    return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
-
-
 def matching_core_radius(c_para, epsilon, m):
     """
     For a given angle between and  (epsilon), and a given distance between
@@ -182,7 +161,7 @@ def estimate_core_radius_using_shower_model(
         0.0,
     ]
 
-    epsilon = angle_between(shower_maximum_direction, core_axis_direction)
+    epsilon = utils.angle_between(shower_maximum_direction, core_axis_direction)
 
     c_para_r_para_mask = np.zeros(
         shape=(
