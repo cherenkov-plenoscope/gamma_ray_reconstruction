@@ -55,7 +55,7 @@ def _project_light_field_on_para_perp(
     return c_para, c_perp
 
 
-def response_lorentz_transverse(
+def response(
     main_axis_azimuth,
     main_axis_support_cx,
     main_axis_support_cy,
