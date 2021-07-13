@@ -2,7 +2,7 @@ from . import config
 from . import shower_model
 from . import core_radius_search
 from .ShowerModelFit import ShowerModelFit
-from .. import fuzzy
+from .. import v2020nov12fuzzy0
 
 
 import numpy as np
@@ -26,7 +26,7 @@ def estimate(
         loph_record=loph_record, light_field_geometry=lfg
     )
 
-    fuzzy_result, fuzzy_debug = fuzzy.estimate_main_axis_to_core(
+    fuzzy_result, fuzzy_debug = v2020nov12fuzzy0.estimate_main_axis_to_core(
         split_light_field=split_light_field,
         model_config=fuzzy_config["ellipse_model"],
         image_binning=fuzzy_config["image"],
