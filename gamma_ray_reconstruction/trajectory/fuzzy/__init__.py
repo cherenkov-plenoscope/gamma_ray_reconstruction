@@ -1,4 +1,4 @@
-from . import split_light_field_model
+from . import ellipse_model
 from . import direction
 from . import discrete_kernel
 from . import config
@@ -21,7 +21,7 @@ def estimate_main_axis_to_core(
     # A probability-density for the shower's main-axis and primary particle's
     # direction.
 
-    slf_model = split_light_field_model.estimate_model_from_light_field(
+    slf_model = ellipse_model.estimate_model_from_light_field(
         split_light_field=split_light_field, model_config=model_config
     )
     fuzzy_image = pl.fuzzy.direction.make_image_from_model(

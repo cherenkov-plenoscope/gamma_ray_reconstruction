@@ -1,5 +1,6 @@
 import numpy as np
 import plenoirf
+from . import ellipse_model
 from . import discrete_kernel
 
 
@@ -16,7 +17,7 @@ EXAMPLE = {
         "radius_deg": 1.0,
         "smoothing_kernel_width_deg": 41.0,
     },
-    "ellipse_model": {"min_num_photons": 3,},
+    "ellipse_model": ellipse_model.EXAMPLE_CONFIG
 }
 
 
