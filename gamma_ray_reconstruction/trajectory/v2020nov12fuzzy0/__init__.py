@@ -1,7 +1,10 @@
 from . import config
 from . import ellipse_model
 from . import ring_model
-from . import fuzzy_image
+from . import fuzzy_model
+
+import scipy.signal
+import numpy as np
 
 
 def estimate_main_axis_to_core(
@@ -23,13 +26,13 @@ def estimate_main_axis_to_core(
     slf_model = ellipse_model.estimate_model_from_light_field(
         split_light_field=split_light_field, model_config=model_config
     )
-    fuzzy_image = fuzzy_image.make_image_from_model(
+    fuzzy_image = fuzzy_model.make_image_from_model(
         split_light_field_model=slf_model, image_binning=image_binning,
     )
     fuzzy_image_smooth = scipy.signal.convolve2d(
         in1=fuzzy_image, in2=image_smoothing_kernel, mode="same"
     )
-    reco_cx, reco_cy = fuzzy_image.argmax_image_cx_cy(
+    reco_cx, reco_cy = fuzzy_model.argmax_image_cx_cy(
         image=fuzzy_image_smooth, image_binning=image_binning,
     )
 

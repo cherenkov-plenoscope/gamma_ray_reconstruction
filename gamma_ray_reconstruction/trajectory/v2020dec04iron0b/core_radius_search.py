@@ -1,5 +1,6 @@
 from ... import utils
 from . import shower_model
+import numpy as np
 
 
 def matching_core_radius(c_para, epsilon, m):

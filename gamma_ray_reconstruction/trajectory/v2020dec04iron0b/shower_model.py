@@ -33,7 +33,7 @@ def _project_light_field_on_para_perp(
     source_cx, source_cy = _source_direction_cx_cy(
         main_axis_azimuth=main_axis_azimuth,
         main_axis_support_cx=main_axis_support_cx,
-        main_axis_support_c=main_axis_support_cy,
+        main_axis_support_cy=main_axis_support_cy,
         c_para=c_para
     )
     core_x, core_y = _core_position_x_y(
