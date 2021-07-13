@@ -53,8 +53,8 @@ def estimate_model_from_image_sequence(cx, cy, t):
 
 def estimate_model_from_light_field(split_light_field, model_config):
     models = []
-    for pax in range(split_light_field.number_paxel):
-        img = split_light_field.image_sequences[pax]
+    for pax in range(split_light_field["number_paxel"]):
+        img = split_light_field["image_sequences"][pax]
         num_photons = img.shape[0]
         if num_photons >= model_config["min_num_photons"]:
             models.append(

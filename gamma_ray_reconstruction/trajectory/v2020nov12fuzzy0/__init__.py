@@ -15,8 +15,8 @@ def estimate_main_axis_to_core(
     ring_binning,
     ring_smoothing_kernel,
 ):
-    median_cx = split_light_field.median_cx
-    median_cy = split_light_field.median_cy
+    median_cx = split_light_field["median_cx"]
+    median_cy = split_light_field["median_cy"]
 
     # make fuzzy image
     # ----------------
