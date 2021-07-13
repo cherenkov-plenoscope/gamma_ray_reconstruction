@@ -5,18 +5,21 @@ from . import fuzzy_model
 
 import scipy.signal
 import numpy as np
+import plenopy as pl
 
 
 def estimate_main_axis_to_core(
-    split_light_field,
+    loph_record,
+    light_field_geometry,
     model_config,
     image_binning,
     image_smoothing_kernel,
     ring_binning,
     ring_smoothing_kernel,
 ):
-    median_cx = split_light_field["median_cx"]
-    median_cy = split_light_field["median_cy"]
+    split_light_field = pl.split_light_field.make_split_light_field(
+        loph_record=loph_record, light_field_geometry=light_field_geometry
+    )
 
     # make fuzzy image
     # ----------------
@@ -41,7 +44,9 @@ def estimate_main_axis_to_core(
 
     # make ring to find main-axis
     # ---------------------------
-
+    median_cx, median_cy = pl.split_light_field.median_cx_cy(
+        loph_record=loph_record, light_field_geometry=light_field_geometry
+    )
     azimuth_ring = ring_model.project_image_onto_ring(
         image=fuzzy_image_smooth,
         image_binning=image_binning,

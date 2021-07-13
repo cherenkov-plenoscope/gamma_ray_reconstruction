@@ -22,12 +22,9 @@ def estimate(
     """
     lfg = light_field_geometry
 
-    split_light_field = pl.split_light_field.make_split_light_field(
-        loph_record=loph_record, light_field_geometry=lfg
-    )
-
     fuzzy_result, fuzzy_debug = v2020nov12fuzzy0.estimate_main_axis_to_core(
-        split_light_field=split_light_field,
+        loph_record=loph_record,
+        light_field_geometry=light_field_geometry,
         model_config=fuzzy_config["ellipse_model"],
         image_binning=fuzzy_config["image"],
         image_smoothing_kernel=fuzzy_config["image"]["smoothing_kernel"],
@@ -37,13 +34,17 @@ def estimate(
 
     lixel_ids = loph_record["photons"]["channels"]
 
+    shower_maximum_cx, shower_maximum_cy = pl.split_light_field.median_cx_cy(
+        loph_record=loph_record, light_field_geometry=light_field_geometry
+    )
+
     main_axis_to_core_finder = ShowerModelFit(
         light_field_cx=lfg.cx_mean[lixel_ids],
         light_field_cy=lfg.cy_mean[lixel_ids],
         light_field_x=lfg.x_mean[lixel_ids],
         light_field_y=lfg.y_mean[lixel_ids],
-        shower_maximum_cx=split_light_field["median_cx"],
-        shower_maximum_cy=split_light_field["median_cy"],
+        shower_maximum_cx=shower_maximum_cx,
+        shower_maximum_cy=shower_maximum_cy,
         shower_maximum_object_distance=shower_maximum_object_distance,
         config=model_fit_config,
     )
@@ -99,8 +100,8 @@ def model_response_for_true_trajectory(
 ):
     lfg = light_field_geometry
 
-    split_light_field = pl.split_light_field.make_split_light_field(
-        loph_record=loph_record, light_field_geometry=lfg
+    shower_maximum_cx, shower_maximum_cy = pl.split_light_field.median_cx_cy(
+        loph_record=loph_record, light_field_geometry=light_field_geometry
     )
 
     true_main_axis_azimuth = np.pi + np.arctan2(true_y, true_x)
@@ -108,16 +109,16 @@ def model_response_for_true_trajectory(
         true_main_axis_azimuth - np.pi
     )
     true_c_para = np.hypot(
-        split_light_field["median_cx"] - true_cx,
-        split_light_field["median_cy"] - true_cy,
+        shower_maximum_cx - true_cx,
+        shower_maximum_cy - true_cy,
     )
 
     lixel_ids = loph_record["photons"]["channels"]
 
     true_response = shower_model.response(
         main_axis_azimuth=true_main_axis_azimuth,
-        main_axis_support_cx=split_light_field["median_cx"],
-        main_axis_support_cy=split_light_field["median_cy"],
+        main_axis_support_cx=shower_maximum_cx,
+        main_axis_support_cy=shower_maximum_cy,
         light_field_cx=lfg.cx_mean[lixel_ids],
         light_field_cy=lfg.cy_mean[lixel_ids],
         light_field_x=lfg.x_mean[lixel_ids],
