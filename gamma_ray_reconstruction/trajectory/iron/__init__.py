@@ -1,7 +1,7 @@
 from . import config
 from . import shower_model
 from . import core_radius_search
-from . import model_fit
+from .ShowerModelFit import ShowerModelFit
 from .. import fuzzy
 
 
@@ -37,7 +37,7 @@ def estimate(
 
     lixel_ids = loph_record["photons"]["channels"]
 
-    main_axis_to_core_finder = model_fit.MainAxisToCoreFinder(
+    main_axis_to_core_finder = ShowerModelFit(
         light_field_cx=lfg.cx_mean[lixel_ids],
         light_field_cy=lfg.cy_mean[lixel_ids],
         light_field_x=lfg.x_mean[lixel_ids],
