@@ -1,11 +1,6 @@
 import numpy as np
 import skimage.draw
 
-"""
-Create fuzzy-image from models
-------------------------------
-"""
-
 
 def _draw_line(r0, c0, r1, c1, image_shape):
     rr, cc, aa = skimage.draw.line_aa(r0=r0, c0=c0, r1=r1, c1=c1)
