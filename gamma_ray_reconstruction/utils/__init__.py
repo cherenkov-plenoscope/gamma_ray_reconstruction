@@ -23,13 +23,5 @@ def angle_between(v1, v2):
     return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
 
 
-def bin_centers(bin_edges, weight_lower_edge=0.5):
-    assert weight_lower_edge >= 0.0 and weight_lower_edge <= 1.0
-    weight_upper_edge = 1.0 - weight_lower_edge
-    return (
-        weight_lower_edge * bin_edges[:-1] + weight_upper_edge * bin_edges[1:]
-    )
-
-
 def argmax2d(a):
     return np.unravel_index(np.argmax(a), a.shape)
