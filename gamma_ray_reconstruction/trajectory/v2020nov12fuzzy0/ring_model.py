@@ -2,12 +2,7 @@ import numpy as np
 
 
 def project_image_onto_ring(
-    image,
-    image_binning,
-    ring_cx,
-    ring_cy,
-    ring_radius,
-    ring_binning,
+    image, image_binning, ring_cx, ring_cy, ring_radius, ring_binning,
 ):
     pix_per_rad = image_binning["num_bins"] / (2.0 * image_binning["radius"])
     image_middle_px = image_binning["num_bins"] // 2

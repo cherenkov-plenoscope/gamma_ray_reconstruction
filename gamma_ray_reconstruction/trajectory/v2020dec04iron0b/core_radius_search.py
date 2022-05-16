@@ -16,9 +16,7 @@ def matching_core_radius(c_para, epsilon, m):
 
 
 def make_search_mask_for_c_para_r_para(
-    config,
-    epsilon,
-    distance_aperture_center_to_shower_maximum
+    config, epsilon, distance_aperture_center_to_shower_maximum
 ):
 
     c_para_r_para_mask = np.zeros(
@@ -58,7 +56,6 @@ def make_search_mask_for_c_para_r_para(
     return c_para_r_para_mask
 
 
-
 def estimate_core_radius_using_shower_model(
     main_axis_support_cx,
     main_axis_support_cy,
@@ -94,7 +91,9 @@ def estimate_core_radius_using_shower_model(
         0.0,
     ]
 
-    epsilon = utils.angle_between(shower_maximum_direction, core_axis_direction)
+    epsilon = utils.angle_between(
+        shower_maximum_direction, core_axis_direction
+    )
 
     c_para_r_para_mask = make_search_mask_for_c_para_r_para(
         config=config,
@@ -114,9 +113,7 @@ def estimate_core_radius_using_shower_model(
         for rbin, r_para in enumerate(config["r_para"]["supports"]):
 
             if c_para_r_para_mask[cbin, rbin]:
-                c_para_r_para_response[
-                    cbin, rbin
-                ] = shower_model.response(
+                c_para_r_para_response[cbin, rbin] = shower_model.response(
                     main_axis_azimuth=main_axis_azimuth,
                     main_axis_support_cx=main_axis_support_cx,
                     main_axis_support_cy=main_axis_support_cy,
@@ -133,9 +130,7 @@ def estimate_core_radius_using_shower_model(
 
     # find highest response in c_para r_para
     # --------------------------------------
-    argmax_c_para, argmax_r_para = utils.argmax2d(
-        c_para_r_para_response
-    )
+    argmax_c_para, argmax_r_para = utils.argmax2d(c_para_r_para_response)
     max_c_para = config["c_para"]["supports"][argmax_c_para]
     max_r_para = config["r_para"]["supports"][argmax_r_para]
     max_response = c_para_r_para_response[argmax_c_para, argmax_r_para]

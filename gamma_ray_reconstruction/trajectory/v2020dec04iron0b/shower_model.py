@@ -3,10 +3,7 @@ import airshower_template_generator as atg
 
 
 def _source_direction_cx_cy(
-    main_axis_azimuth,
-    main_axis_support_cx,
-    main_axis_support_cy,
-    c_para
+    main_axis_azimuth, main_axis_support_cx, main_axis_support_cy, c_para
 ):
     source_cx = main_axis_support_cx + np.cos(main_axis_azimuth) * c_para
     source_cy = main_axis_support_cy + np.sin(main_axis_azimuth) * c_para
@@ -34,11 +31,10 @@ def _project_light_field_on_para_perp(
         main_axis_azimuth=main_axis_azimuth,
         main_axis_support_cx=main_axis_support_cx,
         main_axis_support_cy=main_axis_support_cy,
-        c_para=c_para
+        c_para=c_para,
     )
     core_x, core_y = _core_position_x_y(
-        main_axis_azimuth=main_axis_azimuth,
-        r_para=r_para
+        main_axis_azimuth=main_axis_azimuth, r_para=r_para
     )
 
     WRT_DOWNWARDS = -1.0
@@ -98,9 +94,7 @@ def response(
         c_deg=0.0, peak_deg=0.0, width_deg=cer_perp_distance_threshold
     )
     l_trans = atg.model.lorentz_transversal(
-        c_deg=cer_c_perp,
-        peak_deg=0.0,
-        width_deg=cer_perp_distance_threshold,
+        c_deg=cer_c_perp, peak_deg=0.0, width_deg=cer_perp_distance_threshold,
     )
     l_trans /= l_trans_max
 

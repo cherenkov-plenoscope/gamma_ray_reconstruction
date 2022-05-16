@@ -3,11 +3,7 @@ from ... import utils
 
 
 EXAMPLE = {
-    "c_para": {
-        "start_deg": -4.0,
-        "stop_deg": 4.0,
-        "num_supports": 128,
-    },
+    "c_para": {"start_deg": -4.0, "stop_deg": 4.0, "num_supports": 128,},
     "r_para": {"start_m": -640, "stop_m": 640.0, "num_supports": 96,},
     "scan": {"num_bins_radius": 2,},
     "shower_model": {"c_perp_width_deg": 0.1,},

@@ -32,8 +32,7 @@ def compile_user_config(user_config):
     img["c_bin_edges"] = np.linspace(
         -img["radius"], +img["radius"], img["num_bins"] + 1,
     )
-    img["c_bin_centers"] = binning_utils.centers(
-        bin_edges=img["c_bin_edges"])
+    img["c_bin_centers"] = binning_utils.centers(bin_edges=img["c_bin_edges"])
     _image_bins_per_rad = img["num_bins"] / (2.0 * img["radius"])
     img["smoothing_kernel_width"] = np.deg2rad(
         uimg["smoothing_kernel_width_deg"]

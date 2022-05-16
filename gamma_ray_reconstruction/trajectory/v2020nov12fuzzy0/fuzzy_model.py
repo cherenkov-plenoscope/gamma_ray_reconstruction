@@ -48,9 +48,7 @@ def make_image_from_model(split_light_field_model, image_binning):
         shape=(image_binning["num_bins"], image_binning["num_bins"])
     )
     for model in split_light_field_model:
-        rr, cc, aa = draw_line_model(
-            model=model, image_binning=image_binning
-        )
+        rr, cc, aa = draw_line_model(model=model, image_binning=image_binning)
         out[rr, cc] += aa * model["num_photons"]
     return out
 
@@ -60,9 +58,9 @@ analyse fuzzy image
 -------------------
 """
 
+
 def argmax_image_cx_cy(image, image_binning):
     _resp = utils.argmax2d(image)
     reco_cx = image_binning["c_bin_centers"][_resp[1]]
     reco_cy = image_binning["c_bin_centers"][_resp[0]]
     return reco_cx, reco_cy
-

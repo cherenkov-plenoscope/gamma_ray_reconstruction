@@ -109,8 +109,7 @@ def model_response_for_true_trajectory(
         true_main_axis_azimuth - np.pi
     )
     true_c_para = np.hypot(
-        shower_maximum_cx - true_cx,
-        shower_maximum_cy - true_cy,
+        shower_maximum_cx - true_cx, shower_maximum_cy - true_cy,
     )
 
     lixel_ids = loph_record["photons"]["channels"]
