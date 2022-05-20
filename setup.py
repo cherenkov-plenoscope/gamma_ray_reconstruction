@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setuptools.setup(
     name="gamma_ray_reconstruction",
-    version="0.0.2",
+    version="0.0.3",
     author="Sebastian Achim Mueller",
     author_email="sebastian-achim.mueller@mpi-hd.mpg.de",
     description="Reconstruct cosmic gamma-rays from Cherenkov-light-fields",
@@ -21,5 +21,5 @@ setuptools.setup(
     ],
     packages=["gamma_ray_reconstruction",],
     python_requires=">=3.0",
-    install_requires=["iminuit==1.4.9", "binning_utils_relleums",],
+    install_requires=["iminuit==1.4.9", "binning_utils-sebastian-achim-mueller",],
 )
