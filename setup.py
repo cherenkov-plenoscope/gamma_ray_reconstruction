@@ -21,5 +21,8 @@ setuptools.setup(
     ],
     packages=["gamma_ray_reconstruction",],
     python_requires=">=3.0",
-    install_requires=["iminuit==1.4.9", "binning_utils-sebastian-achim-mueller",],
+    install_requires=[
+        "iminuit==1.4.9",
+        "binning_utils-sebastian-achim-mueller",
+    ],
 )
