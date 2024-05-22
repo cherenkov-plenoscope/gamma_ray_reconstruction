@@ -30,13 +30,15 @@ def estimate_main_axis_to_core(
         split_light_field=split_light_field, model_config=model_config
     )
     fuzzy_image = fuzzy_model.make_image_from_model(
-        split_light_field_model=slf_model, image_binning=image_binning,
+        split_light_field_model=slf_model,
+        image_binning=image_binning,
     )
     fuzzy_image_smooth = scipy.signal.convolve2d(
         in1=fuzzy_image, in2=image_smoothing_kernel, mode="same"
     )
     reco_cx, reco_cy = fuzzy_model.argmax_image_cx_cy(
-        image=fuzzy_image_smooth, image_binning=image_binning,
+        image=fuzzy_image_smooth,
+        image_binning=image_binning,
     )
 
     median_cx_std = np.std([a["median_cx"] for a in slf_model])
@@ -70,7 +72,7 @@ def estimate_main_axis_to_core(
 
     # relative uncertainty
     _unc = np.mean(azimuth_ring_smooth)
-    main_axis_azimuth_uncertainty = _unc ** 2.0
+    main_axis_azimuth_uncertainty = _unc**2.0
 
     result = {}
     result["main_axis_support_cx"] = median_cx

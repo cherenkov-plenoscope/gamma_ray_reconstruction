@@ -2,14 +2,18 @@ import numpy as np
 
 
 def project_image_onto_ring(
-    image, image_binning, ring_cx, ring_cy, ring_radius, ring_binning,
+    image,
+    image_binning,
+    ring_cx,
+    ring_cy,
+    ring_radius,
+    ring_binning,
 ):
     pix_per_rad = image_binning["num_bins"] / (2.0 * image_binning["radius"])
     image_middle_px = image_binning["num_bins"] // 2
 
     ring = np.zeros(ring_binning["num_bins"])
     for ia, az in enumerate(ring_binning["bin_edges"]):
-
         for probe_radius in np.linspace(ring_radius / 2, ring_radius, 5):
             probe_cx = ring_cx + np.cos(az) * probe_radius
             probe_cy = ring_cy + np.sin(az) * probe_radius

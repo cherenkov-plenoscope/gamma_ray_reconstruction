@@ -94,7 +94,9 @@ def response(
         c_deg=0.0, peak_deg=0.0, width_deg=cer_perp_distance_threshold
     )
     l_trans = atg.model.lorentz_transversal(
-        c_deg=cer_c_perp, peak_deg=0.0, width_deg=cer_perp_distance_threshold,
+        c_deg=cer_c_perp,
+        peak_deg=0.0,
+        width_deg=cer_perp_distance_threshold,
     )
     l_trans /= l_trans_max
 

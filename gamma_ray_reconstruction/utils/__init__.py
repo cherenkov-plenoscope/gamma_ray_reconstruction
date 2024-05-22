@@ -9,7 +9,7 @@ def squarespace(start, stop, num):
         num,
     )
     signs = np.sign(sqrt_space)
-    square_space = sqrt_space ** 2
+    square_space = sqrt_space**2
     square_space *= signs
     return square_space
 

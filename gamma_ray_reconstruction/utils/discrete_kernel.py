@@ -15,13 +15,16 @@ USEFUL_SIGMA = 1.92
 
 def gauss1d(num_steps, edge_sigma=USEFUL_SIGMA):
     x = np.linspace(-edge_sigma, edge_sigma, num_steps)
-    z = np.exp(-0.5 * x ** 2)
+    z = np.exp(-0.5 * x**2)
     z = z / np.sum(z)
     return z
 
 
 def gauss2d(num_steps, edge_sigma=USEFUL_SIGMA):
-    kernel_1d = gauss1d(num_steps=num_steps, edge_sigma=edge_sigma,)
+    kernel_1d = gauss1d(
+        num_steps=num_steps,
+        edge_sigma=edge_sigma,
+    )
     kernel_1d = kernel_1d / np.max(kernel_1d)
     out = np.zeros(shape=(num_steps, num_steps))
     for ix in range(num_steps):

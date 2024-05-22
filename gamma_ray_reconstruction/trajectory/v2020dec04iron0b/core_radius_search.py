@@ -18,7 +18,6 @@ def matching_core_radius(c_para, epsilon, m):
 def make_search_mask_for_c_para_r_para(
     config, epsilon, distance_aperture_center_to_shower_maximum
 ):
-
     c_para_r_para_mask = np.zeros(
         shape=(
             config["c_para"]["num_supports"],
@@ -73,7 +72,7 @@ def estimate_core_radius_using_shower_model(
     # ------------------
 
     shower_median_direction_z = np.sqrt(
-        1.0 - shower_maximum_cx ** 2 - shower_maximum_cy ** 2
+        1.0 - shower_maximum_cx**2 - shower_maximum_cy**2
     )
     distance_aperture_center_to_shower_maximum = (
         shower_maximum_object_distance / shower_median_direction_z
@@ -111,7 +110,6 @@ def estimate_core_radius_using_shower_model(
     )
     for cbin, c_para in enumerate(config["c_para"]["supports"]):
         for rbin, r_para in enumerate(config["r_para"]["supports"]):
-
             if c_para_r_para_mask[cbin, rbin]:
                 c_para_r_para_response[cbin, rbin] = shower_model.response(
                     main_axis_azimuth=main_axis_azimuth,

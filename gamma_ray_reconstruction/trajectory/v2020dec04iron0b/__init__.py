@@ -74,7 +74,10 @@ def estimate(
 
     return (
         main_axis_to_core_finder.final_result,
-        {"fuzzy_result": fuzzy_result, "fuzzy_debug": fuzzy_debug,},
+        {
+            "fuzzy_result": fuzzy_result,
+            "fuzzy_debug": fuzzy_debug,
+        },
     )
 
 
@@ -111,7 +114,8 @@ def model_response_for_true_trajectory(
         true_main_axis_azimuth - np.pi
     )
     true_c_para = np.hypot(
-        shower_maximum_cx - true_cx, shower_maximum_cy - true_cy,
+        shower_maximum_cx - true_cx,
+        shower_maximum_cy - true_cy,
     )
 
     lixel_ids = loph_record["photons"]["channels"]

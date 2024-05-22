@@ -19,7 +19,9 @@ setuptools.setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Science/Research",
     ],
-    packages=["gamma_ray_reconstruction",],
+    packages=[
+        "gamma_ray_reconstruction",
+    ],
     python_requires=">=3.0",
     install_requires=[
         "iminuit",  # ==1.4.9
