@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="gamma_ray_reconstruction",
-    version="0.0.3",
+    name="gamma_ray_reconstruction_cherenkov-plenoscope-project",
+    version="0.0.4",
     author="Sebastian Achim Mueller",
     author_email="sebastian-achim.mueller@mpi-hd.mpg.de",
     description="Reconstruct cosmic gamma-rays from Cherenkov-light-fields",
