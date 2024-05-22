@@ -17,8 +17,8 @@ from Cherenkov-light-fields in order to do astronomy.
 .. |TestStatus| image:: https://github.com/cherenkov-plenoscope/gamma_ray_reconstruction/actions/workflows/test.yml/badge.svg?branch=main
     :target: https://github.com/cherenkov-plenoscope/gamma_ray_reconstruction/actions/workflows/test.yml
 
-.. |PyPiStatus| image:: https://img.shields.io/pypi/v/gamma_ray_reconstruction
-    :target: https://pypi.org/project/gamma_ray_reconstruction
+.. |PyPiStatus| image:: https://img.shields.io/pypi/v/gamma_ray_reconstruction_cherenkov-plenoscope-project
+    :target: https://pypi.org/project/gamma_ray_reconstruction_cherenkov-plenoscope-project
 
 .. |BlackPackStyle| image:: https://img.shields.io/badge/pack%20style-black-000000.svg
     :target: https://github.com/cherenkov-plenoscope/black_pack
