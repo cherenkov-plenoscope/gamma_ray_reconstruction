@@ -7,7 +7,7 @@ from .. import v2020nov12fuzzy0
 
 import numpy as np
 import plenopy as pl
-from iminuit import Minuit
+import iminuit
 
 
 def estimate(
@@ -49,25 +49,27 @@ def estimate(
         config=model_fit_config,
     )
 
-    minimizer = Minuit(
+    minimizer = iminuit.Minuit(
         fcn=main_axis_to_core_finder.evaluate_shower_model,
         main_axis_azimuth=fuzzy_result["main_axis_azimuth"],
-        error_main_axis_azimuth=fuzzy_result["main_axis_azimuth_uncertainty"],
-        limit_main_axis_azimuth=(
-            fuzzy_result["main_axis_azimuth"] - 2.0 * np.pi,
-            fuzzy_result["main_axis_azimuth"] + 2.0 * np.pi,
-        ),
         main_axis_support_perp_offset=0.0,
-        error_main_axis_support_perp_offset=fuzzy_result[
-            "main_axis_support_uncertainty"
-        ],
-        limit_main_axis_support_perp_offset=(
-            -5.0 * fuzzy_result["main_axis_support_uncertainty"],
-            5.0 * fuzzy_result["main_axis_support_uncertainty"],
-        ),
-        print_level=0,
-        errordef=Minuit.LEAST_SQUARES,
+        # print_level=0,
     )
+    minimizer.limits["main_axis_azimuth"] = (
+        fuzzy_result["main_axis_azimuth"] - 2.0 * np.pi,
+        fuzzy_result["main_axis_azimuth"] + 2.0 * np.pi,
+    )
+    minimizer.errors["main_axis_azimuth"] = fuzzy_result[
+        "main_axis_azimuth_uncertainty"
+    ]
+    minimizer.limits["main_axis_support_perp_offset"] = (
+        -5.0 * fuzzy_result["main_axis_support_uncertainty"],
+        5.0 * fuzzy_result["main_axis_support_uncertainty"],
+    )
+    minimizer.errors["main_axis_support_perp_offset"] = fuzzy_result[
+        "main_axis_support_uncertainty"
+    ]
+    minimizer.errordef = iminuit.Minuit.LEAST_SQUARES
     minimizer.migrad()
 
     return (

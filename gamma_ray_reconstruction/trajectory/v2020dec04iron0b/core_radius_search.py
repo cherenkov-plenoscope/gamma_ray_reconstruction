@@ -24,7 +24,7 @@ def make_search_mask_for_c_para_r_para(
             config["c_para"]["num_supports"],
             config["r_para"]["num_supports"],
         ),
-        dtype=np.int,
+        dtype=int,
     )
 
     for cbin, c_para in enumerate(config["c_para"]["supports"]):
