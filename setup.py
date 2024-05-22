@@ -1,7 +1,7 @@
 import setuptools
 import os
 
-with open("README.md", "r", encoding="utf-8") as f:
+with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 
@@ -19,7 +19,7 @@ setuptools.setup(
     author_email="sebastian-achim.mueller@mpi-hd.mpg.de",
     description="Reconstruct cosmic gamma-rays from Cherenkov-light-fields",
     long_description=long_description,
-    long_description_content_type="text/md",
+    long_description_content_type="text/x-rst",
     url="https://github.com/cherenkov-plenoscope/gamma_ray_reconstruction",
     packages=[
         "gamma_ray_reconstruction",
